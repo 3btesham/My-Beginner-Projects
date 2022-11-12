@@ -7,7 +7,6 @@ game_state = None
 difficulty = ""
 
 
-# noinspection PyInterpreter
 def game_setup():
     global difficulty
     lives = ()
@@ -69,9 +68,9 @@ def hangmanguess(word, guessed_letters, lives, key, missed_letters):
     lives = lives
     if (word != encoded_word) and lives != 0:
         guess = input("Guess a letter or phrase: ").lower()
-        for letter in guess:
-            if letter in word:
-                guessed_letters += [letter]
+        if len(guess) == 1:
+            if guess in word:
+                guessed_letters += [guess]
                 encoded_word = ""
                 for i in word:
                     if i == " " or i in guessed_letters:
@@ -80,10 +79,17 @@ def hangmanguess(word, guessed_letters, lives, key, missed_letters):
                         encoded_word += "_"
                 key = encoded_word
             else:
-                if letter not in missed_letters:
-                    missed_letters += [letter]
+                if guess not in missed_letters:
+                    missed_letters += [guess]
                 lives -= 1
                 encoded_word = key
+        elif len(guess) > 1:
+            if guess == word:
+                encoded_word = word
+                key = word
+            elif guess != word:
+                lives = 0
+                missed_letters += [guess]
         print(hangmandrawing(difficulty, lives))
         print("Word:", key, "\nMissed Letters:", missed_letters, "\nLives:", lives)
         win_or_lose(word, encoded_word, lives)
