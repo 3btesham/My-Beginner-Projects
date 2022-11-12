@@ -67,7 +67,7 @@ def hangmanguess(word, guessed_letters, lives, key, missed_letters):
     encoded_word = ""
     lives = lives
     if (word != encoded_word) and lives != 0:
-        guess = input("Guess a letter or phrase: ").lower()
+        guess = input("Guess a letter or the whole word: ").lower()
         if len(guess) == 1:
             if guess in word:
                 guessed_letters += [guess]
