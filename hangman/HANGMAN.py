@@ -109,13 +109,14 @@ def win_or_lose(word, guessed_word, lives):
 
 
 def main():
-    global game_state
+    global game_state, difficulty
     settings = game_setup()
     guessed_letters = []
     missed_letters = []
     lives = settings[0]
     word = settings[1]
     key = encode_word(word)
+    print(hangmandrawing(difficulty, lives))
     print(key)
     hangman(word, guessed_letters, lives, key, missed_letters)
 
