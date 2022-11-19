@@ -18,7 +18,10 @@ def game_setup():
             word_to_guess = word_to_guess.lower()
         elif type_of_game == "R":
             word_to_guess = wordbank[random.randint(0, len(wordbank) + 1)]
+        else:
+            type_of_game = ""
     while type(lives) != int:
+        os.system("cls")
         print("What difficulty do you want to play?\nNormal: 6 lives\nHard: 3 lives\nInsane: 1 life")
         difficulty = input("Enter here: ")
         if difficulty == "Normal":
@@ -90,6 +93,7 @@ def hangmanguess(word, guessed_letters, lives, key, missed_letters):
             elif guess != word:
                 lives = 0
                 missed_letters += [guess]
+        os.system('cls')
         print(hangmandrawing(difficulty, lives))
         print("Word:", key, "\nMissed Letters:", missed_letters, "\nLives:", lives)
         win_or_lose(word, encoded_word, lives)
