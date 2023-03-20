@@ -6,7 +6,11 @@ class Player:
         self.grid = ["-"] * 100
         self.attack_grid = ["-"] * 100
         self.grid_pos = [f"{chr(65 + i // 10)}{i % 10 + 1}" for i in range(100)]
-        self.cruiser, self.aircraft, self.battleship, self.destroyer, self.submarine = 1
+        self.cruiser = 1
+        self.aircraft = 1
+        self.battleship = 1
+        self.destroyer = 1
+        self.submarine = 1
         self.attacked_waters = []
         
     def __repr__(self):
