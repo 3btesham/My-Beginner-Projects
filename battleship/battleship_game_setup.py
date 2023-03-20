@@ -56,6 +56,7 @@ def grid_setup(player):
                 os.system('cls')
             elif pos1 not in player.grid_pos:
                 os.system('cls')
+                print(player)
                 print("ERROR: That is not a valid position!")
                 pos1 = ""
                 input("Press enter to continue: ")
@@ -65,6 +66,7 @@ def grid_setup(player):
                 check_pos1 = player.check_pos(pos1)
                 if check_pos1 == False:
                     os.system('cls')
+                    print(player)
                     print("ERROR: Position overlaps with another ship!")
                     pos1 = ""
                     input("Press enter to continue: ")
@@ -96,6 +98,7 @@ def grid_setup(player):
                 os.system('cls')
             elif pos2 not in player.grid_pos:
                 os.system('cls')
+                print(player)
                 print("ERROR: That is not a valid position!")
                 pos2 = ""
                 input("Press enter to continue: ")

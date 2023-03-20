@@ -44,10 +44,17 @@ def turn(player, enemy):
             os.system('cls')
         elif attack_pos not in player.grid_pos:
             os.system('cls')
+            print(player.display_attack_grid())
             print("ERROR: This is not a valid position!")
             attack_pos = ""
             input("Press enter to continue: ")
             os.system('cls')
+        elif attack_pos in enemy.attacked_waters:
+            os.system('cls')
+            print(player.display_attack_grid())
+            print("ERROR: These waters have already been attacked!")
+            attack_pos = ""
+            input("Press enter to continue: ")
     
     player_attack = player.attack_enemy(enemy, attack_pos)
     
@@ -56,7 +63,7 @@ def turn(player, enemy):
         print(player.display_attack_grid())
         print("It was a hit!")
         input("Press enter to continue: ")
-    elif player == "miss":
+    elif player_attack == "miss":
         os.system('cls')
         print(player.display_attack_grid())
         print("It was a miss!")

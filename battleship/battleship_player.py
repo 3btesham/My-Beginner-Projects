@@ -6,6 +6,8 @@ class Player:
         self.grid = ["-"] * 100
         self.attack_grid = ["-"] * 100
         self.grid_pos = [f"{chr(65 + i // 10)}{i % 10 + 1}" for i in range(100)]
+        self.cruiser, self.aircraft, self.battleship, self.destroyer, self.submarine = 1
+        self.attacked_waters = []
         
     def __repr__(self):
         letters = "ABCDEFGHIJ"
@@ -136,6 +138,7 @@ class Player:
     def attack_enemy(self, enemy, pos):
         pos = self.grid_pos_to_num(pos)
         result = enemy.grid[pos]
+        enemy.attacked_waters.append(pos)
         
         if result == "-":
             enemy.grid[pos] = "M"
@@ -145,15 +148,20 @@ class Player:
             enemy.grid[pos] = "H"
             self.attack_grid[pos] = "H"
         
-            if enemy.grid.count("D") == 0:
+            if enemy.grid.count("D") == 0 and self.destroyer == 1:
+                self.destroyer -= 1
                 return "Destroyer"
-            elif enemy.grid.count("C") == 0:
+            elif enemy.grid.count("C") == 0 and self.cruiser == 1:
+                self.cruiser -= 1
                 return "Cruiser"
-            elif enemy.grid.count("A") == 0:
+            elif enemy.grid.count("A") == 0 and self.aircraft == 1:
+                self.aircraft -= 1
                 return "Aircraft"
-            elif enemy.grid.count("B") == 0:
+            elif enemy.grid.count("B") == 0 and self.battleship == 1:
+                self.battleship -= 1
                 return "Battleship"
-            elif enemy.grid.count("S") == 0:
+            elif enemy.grid.count("S") == 0 and self.submarine == 1:
+                self.submarine -= 1
                 return "Submarine"
             else:
                 return "hit"
