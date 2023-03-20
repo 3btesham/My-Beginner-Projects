@@ -140,9 +140,10 @@ class Player:
                     input("Press enter to continue: ")
         
     def attack_enemy(self, enemy, pos):
+        enemy.attacked_waters += pos
         pos = self.grid_pos_to_num(pos)
         result = enemy.grid[pos]
-        enemy.attacked_waters.append(pos)
+
         
         if result == "-":
             enemy.grid[pos] = "M"
